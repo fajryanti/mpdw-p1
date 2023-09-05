@@ -1,0 +1,33 @@
+---
+title: TUGAS MINGGU 2 MPDW
+author: Fajryanti Kusuma Wardani
+NIM: G1401211098
+date: "2023-09-05"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+install.packages("forecast")
+install.packages("graphics")
+install.packages("TTR")
+install.packages("TSA")
+```
+
+```{r}
+library("forecast")
+library("graphics")
+library("TTR")
+library("TSA")
+```
+
+```{r}
+#IMPOR DATA
+library("rio")
+data <- import("https://raw.githubusercontent.com/fajryanti/mpdw-p1/main/PRAKTIKUM%20MINGGU%202/emissions.csv")
+data
+```
+
