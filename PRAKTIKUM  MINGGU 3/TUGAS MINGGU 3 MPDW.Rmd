@@ -18,7 +18,8 @@ library(car)
 ```
 
 ```{r}
-#IMPOR DATA
+#IMPOR DATA 
+#Menggunakan data praktikum minggu kedua
 library("rio")
 data <- import("https://raw.githubusercontent.com/fajryanti/mpdw-p1/main/PRAKTIKUM%20MINGGU%202/new%20delhi%20air%20quality.csv")
 str(data)
@@ -44,22 +45,7 @@ data.ts
 ```
 
 ## Model Koyck
-
-Model Koyck didasarkan pada asumsi bahwa semakin jauh jarak lag peubah independen dari periode sekarang maka semakin kecil pengaruh peubah lag terhadap peubah dependen.
-
-Koyck mengusulkan suatu metode untuk menduga model dinamis distributed lag dengan mengasumsikan bahwa semua koefisien $\beta$ mempunyai tanda sama.
-
-Model kyock merupakan jenis paling umum dari model infinite distributed lag dan juga dikenal sebagai geometric lag
-
-$$
-y_t=a(1-\lambda)+\beta_0X_t+\beta_1Z_t+\lambda Y_{t-1}+V_t
-$$
-
-dengan $$V_t=u_t-\lambda u_{t-1}$$
-
 ### Pemodelan
-Fungsi `koyckDlm()` akan menerapkan model lag terdistribusi dengan transformasi Koyck satu prediktor. Nilai `x` dan `y` tidak perlu sebagai objek *time series* (`ts`). `intercept` dapat dibuat `TRUE` untuk memasukkan intersep ke dalam model.
-
 ```{r}
 #MODEL KOYCK
 model.koyck <- koyckDlm(x = train$o3, y = train$AQI)
@@ -88,9 +74,6 @@ GoF(model.koyck)
 ```
 
 ## Regression with Distributed Lag
-
-Fungsi `dlm()` akan menerapkan model lag terdistribusi dengan satu atau lebih prediktor. Nilai `x` dan `y` tidak perlu sebagai objek *time series* (`ts`). $q$ adalah integer yang mewakili panjang *lag* yang terbatas.
-
 ### Pemodelan (Lag=2)
 
 ```{r}
@@ -156,9 +139,6 @@ GoF(model.dlm2)
 Model tersebut merupakan model yang sangat baik dengan nilai MAPE yang kurang dari 10%.
 
 ## Model Autoregressive
-
-Peubah dependen dipengaruhi oleh peubah independen pada waktu sekarang, serta dipengaruhi juga oleh peubah dependen itu sendiri pada satu waktu yang lalu maka model tersebut disebut *autoregressive* (Gujarati 2004).
-
 ### Pemodelan
 
 ```{r}
